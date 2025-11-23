@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Expense Tracker</h1>
+        {% if current_user.is_authenticated %}
+            <div class="navigation">
+                <a href="{{ url_for('add_expense') }}">Add Expense</a>
+                <a href="{{ url_for('view_expenses') }}">View Expenses</a>
+                <a href="{{ url_for('show_summary') }}">Expense Summary</a>
+                <a href="{{ url_for('logout') }}">Logout</a>
+            </div>
+            <p>Logged in as: {{ current_user.username }}</p>
+        {% else %}
+            <div class="navigation">
+                <a href="{{ url_for('login') }}">Login</a>
+                <a href="{{ url_for('register') }}">Register</a>
+            </div>
+            <p>Please log in or register to track your expenses.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

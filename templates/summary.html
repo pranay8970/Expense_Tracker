@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Expense Summary</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Expense Summary</h1>
+        {% if has_expenses %}
+            <h2>Expenses by Category (Pie Chart)</h2>
+            {% if pie_plot_url %}
+                <img src="{{ pie_plot_url }}" alt="Category Pie Chart">
+            {% else %}
+                <p>No category data to display in a pie chart.</p>
+            {% endif %}
+
+            <h2>Expenses by Category (Bar Chart)</h2>
+            {% if bar_plot_url %}
+                <img src="{{ bar_plot_url }}" alt="Category Bar Chart">
+            {% else %}
+                <p>No category data to display in a bar chart.</p>
+            {% endif %}
+
+            <h2>Monthly Expenses Over Time</h2>
+            {% if time_series_plot_url %}
+                <img src="{{ time_series_plot_url }}" alt="Monthly Expenses Time Series">
+            {% else %}
+                <p>Not enough data to display a time series plot.</p>
+            {% endif %}
+        {% else %}
+            <p>No expenses recorded yet to summarize.</p>
+        {% endif %}
+        <p><a href="{{ url_for('index') }}">Back to Home</a></p>
+    </div>
+</body>
+</html>
